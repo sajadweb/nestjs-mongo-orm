@@ -1,9 +1,18 @@
 # Mongoose repository `nestjs-mongo-orm`
+
 `nestjs-mongo-orm` is an Mongoose that can run in Nestjs and can be used with TypeScript and JavaScript (ES2021).
 Define Mongoose models using TypeScript repository
 
+## Install
+
+ ```sh
+  npm i nestjs-mongo-orm
+ ```
+
 ## Basic usage
+
 It is `email.schema.ts`.
+
 ```ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
@@ -20,9 +29,10 @@ export class Email{
 
 export const EmailSchema = SchemaFactory.createForClass(Email);
 ```
-It is `email.repository.ts`
-```ts
 
+It is `email.repository.ts`
+
+```ts
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -39,7 +49,9 @@ export class EmailRepository extends BaseRepository<EmailDocument> {
   }
 }
 ```
-Register module in nestja
+
+Register module in nestjs
+
 ```ts
 import { Module } from '@nestjs/common';
 import { ChatService } from './chat.service';
@@ -61,10 +73,10 @@ import { MongooseModule } from '@nestjs/mongoose';
   providers: [EmailService, EmailRepository],
 })
 export class EmailModule {}
-
-
 ```
+
 It is `email.service.ts`
+
 ```ts
 
 Injectable()
@@ -85,6 +97,7 @@ export class EmailService {
 ```
 
 ## Requirements
+
 ```json
 {
    "peerDependencies": {
@@ -95,12 +108,7 @@ export class EmailService {
    }
 }
 ```
-## Install
- ```sh
-  npm install git+ssh://git@github.com:sajadweb/nestjs-mongo-orm.git#v10.0.10
-  npm install git+https://isaacs@github.com/sajadweb/nestjs-mongo-orm.git
-  pnpm install git://github.com/sajadweb/nestjs-mongo-orm.git#v10.0.10
- ```
+
 ## Author
 
 - [Sajjad Mohammadi nejad](https://sajadweb.ir)
