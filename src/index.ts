@@ -1,4 +1,3 @@
-export * from './base.model';
-export * from './base.repository';
-export * from './mongo.config';
+export * from './base'; 
+export * from './module';
 export * from './helper';
