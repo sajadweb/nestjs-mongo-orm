@@ -1,6 +1,6 @@
 {
   "name": "nestjs-mongo-orm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "It is an Mongoose that can run in Nestjs and can be used with TypeScript and JavaScript (ES2021).",
   "main": "dist/index.js",
   "author": "Sajjad Mohammadi nejad <sajadweb7@gmail.com> (https://sajadweb.ir)",
