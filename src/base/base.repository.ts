@@ -77,6 +77,47 @@ export abstract class BaseRepository<T> {
   public async findWithRelations(relations: any): Promise<T[]> {
     return await this.entity.find(relations);
   }
+
+  async pages($options: Array<any>,
+    page?: number,
+    count?: number,) {
+    if (!page || page < 0) {
+      page = 0;
+    } else {
+      page = parseInt(`${page}`)
+    }
+    if (!count || count <= 0) {
+      count = 15;
+    } else {
+      count = parseInt(`${count}`)
+    }
+    const skip = parseInt(`${page}`) * parseInt(`${count}`);
+    console.log({
+      skip,
+      count,
+    })
+    const data = await this.findWithAggregate([
+      ...$options,
+      {
+        '$facet': {
+          metadata: [{ $count: "total" }],
+          data: [{ $skip: skip }, { $limit: count }] // add projection here wish you re-shape the docs
+        }
+      },
+      {
+        "$project": {
+          "data": 1,
+          "total": {
+            "$arrayElemAt": [
+              "$metadata.total",
+              0
+            ]
+          }
+        }
+      }
+    ]);
+    return data?.pop();
+  }
   public async pagination(
     options: Array<any>,
     page?: number,
